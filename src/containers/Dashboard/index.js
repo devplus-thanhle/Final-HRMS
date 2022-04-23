@@ -55,6 +55,7 @@ const Dasboard = () => {
               // minHeight: "calc(100vh - 112px)",
               // width: "100%",
               height: "100%",
+              overflow: "scroll",
             }}
           >
             <RootRouter />
