@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, DatePicker, version } from "antd";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
+  const [file, setFile] = useState(null);
+  console.log(file);
   return (
     <div>
       <h1>antd version: {version}</h1>
@@ -34,6 +36,8 @@ const HomePage = () => {
         height="480"
         title="a"
       ></iframe>
+
+      <input type="file" onChange={(e) => setFile(e.target.files)} />
     </div>
   );
 };

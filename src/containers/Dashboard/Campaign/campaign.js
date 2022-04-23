@@ -72,7 +72,7 @@ const columns = [
 const Campaign = () => {
   const dispatch = useDispatch();
   const { campaigns } = useSelector((state) => state.campaigns);
-
+  console.log("campaigns", campaigns);
   useEffect(() => {
     dispatch(getCampaign());
   }, [dispatch]);
