@@ -1,13 +1,18 @@
 import React from "react";
-
+import Home from "../containers/HomePage/index";
+import Dashboard from "../containers/Dashboard/index";
+import NotFound from "../containers/404Page/index";
 export const routes = [
   {
-    path: "/",
-    exact: true,
-    component: React.lazy(() => import("../containers/HomePage/index")),
+    indexx: true,
+    component: <Home />,
   },
   {
-    path: "/list-user",
-    component: React.lazy(() => import("../containers/InterviewPage/index")),
+    path: "/dashboard/*",
+    component: <Dashboard />,
+  },
+  {
+    path: "*",
+    component: <NotFound />,
   },
 ];
