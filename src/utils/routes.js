@@ -6,9 +6,9 @@ export const listRoute = (list) => {
     return (
       <Route
         key={index}
+        index={route.indexx}
         path={route.path}
-        component={route.component}
-        exact={route.exact}
+        element={route.component}
       />
     );
   });
