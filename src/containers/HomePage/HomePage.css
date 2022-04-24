@@ -1,0 +1,12 @@
+.logo {
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+header.ant-layout-header {
+    background: white;
+}
+
+img{
+    width: 75%;
+}
