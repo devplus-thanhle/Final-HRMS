@@ -7,7 +7,6 @@ const initialState = {
 const campaignReducer = (state = initialState, action) => {
   switch (action.type) {
     case CAMPAIGN_TYPES.GET_CAMPAIGN:
-      console.log(action.payload);
       return {
         campaigns: action.payload,
       };
