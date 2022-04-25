@@ -4,6 +4,7 @@ import CreateCampaign from "../Campaign/createCampaign";
 import React from "react";
 import NotFound from "../../404Page";
 import DetailProfile from "../Profile/detailProfile";
+import Statistic from "../Statistic/statistic";
 
 export const routes = [
   {
@@ -26,6 +27,10 @@ export const routes = [
   {
     path: "/profile/:id",
     component: <DetailProfile />,
+  },
+  {
+    path: "/",
+    component: <Statistic />,
   },
   {
     path: "*",
