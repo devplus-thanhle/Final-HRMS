@@ -30,7 +30,7 @@ const Dasboard = () => {
   return (
     <div>
       <Layout style={{ height: "100vh" }}>
-        <Sider trigger={null} collapsible collapsed={open}>
+        <Sider trigger={null} collapsible collapsed={open} collapsedWidth="70">
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             {navigation.map((item, index) => (
@@ -52,8 +52,6 @@ const Dasboard = () => {
             style={{
               margin: "24px 16px",
               padding: 24,
-              // minHeight: "calc(100vh - 112px)",
-              // width: "100%",
               height: "100%",
               overflow: "scroll",
             }}

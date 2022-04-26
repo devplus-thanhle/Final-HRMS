@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, notification, Space } from "antd";
+import { notification } from "antd";
 import { useSelector } from "react-redux";
 
 const Alert = () => {

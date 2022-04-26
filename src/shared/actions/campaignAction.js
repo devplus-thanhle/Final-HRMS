@@ -3,25 +3,25 @@ import { GLOBALTYPES } from "./globalTypes";
 
 export const CAMPAIGN_TYPES = {
   GET_CAMPAIGN: "GET_CAMPAIGN",
+  LOADING_CAMPAIGN: "LOADING_CAMPAIGN",
 };
 
-export const getCampaign = () => async (dispatch) => {
+export const getCampaign = (page) => async (dispatch) => {
   try {
-    dispatch({ type: GLOBALTYPES.LOADING, payload: true });
-    const res = await getDataAPI("get-all-campaign");
+    dispatch({ type: CAMPAIGN_TYPES.LOADING_CAMPAIGN, payload: true });
+    const res = await getDataAPI(`get-all-campaign?page=${page}`);
     dispatch({
       type: CAMPAIGN_TYPES.GET_CAMPAIGN,
-      payload: res.data.result.campaigns,
+      payload: {
+        data: res.data.result.campaigns,
+        count: res.data.result.count,
+      },
     });
-    dispatch({ type: GLOBALTYPES.LOADING, payload: false });
+    dispatch({ type: CAMPAIGN_TYPES.LOADING_CAMPAIGN, payload: false });
   } catch (error) {
     console.log(error);
   }
 };
-// axios
-//       .post("http://localhost:5000/api/create-campaign", data)
-//       .then((res) => console.log(res))
-//       .catch((err) => console.log(err));
 
 export const createCampaign = (data) => async (dispatch) => {
   try {
@@ -30,7 +30,10 @@ export const createCampaign = (data) => async (dispatch) => {
       type: GLOBALTYPES.ALERT,
       payload: { success: res.data.msg },
     });
-    console.log(res);
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {},
+    });
   } catch (error) {
     console.log(error);
   }
