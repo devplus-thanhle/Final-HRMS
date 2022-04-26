@@ -8,7 +8,7 @@ const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case GLOBALTYPES.LOADING:
       return {
-        loading: action.payload,
+        loading: {},
       };
     default:
       return state;

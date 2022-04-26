@@ -7,6 +7,9 @@ import {
   InputNumber,
   Upload,
   Typography,
+  Checkbox,
+  Row,
+  Col,
 } from "antd";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -47,6 +50,10 @@ const CreateCampaign = () => {
     data.append("endDate", endDate);
     data.append("quantity", values.Quantity);
     data.append("position", values.Position);
+    // data.append("technology", values.Technology);
+    values.Technology.forEach((technology) =>
+      data.append("technology", technology)
+    );
 
     dispatch(createCampaign(data));
   };
@@ -128,6 +135,28 @@ const CreateCampaign = () => {
             rules={[{ required: true, message: "Please input your Name!" }]}
           >
             <Input />
+          </Form.Item>
+
+          <Form.Item name="Technology" label="Technology">
+            <Checkbox.Group>
+              <Row>
+                <Col span={8}>
+                  <Checkbox value="ReactJs" style={{ margin: "0px 10px" }}>
+                    ReactJS
+                  </Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="NodeJs" style={{ margin: "0px 10px" }}>
+                    NodeJs
+                  </Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Php" style={{ margin: "0px 10px" }}>
+                    PHP
+                  </Checkbox>
+                </Col>
+              </Row>
+            </Checkbox.Group>
           </Form.Item>
 
           <Form.Item

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCampaign } from "../../../shared/actions/campaignAction";
-import { Table, Tag, Button, Divider, Space } from "antd";
-import { Link } from "react-router-dom";
+import { Table, Tag, Button, Divider, Space, Spin } from "antd";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -20,7 +20,14 @@ const columns = [
     title: "Quantity",
     dataIndex: "quantity",
     key: "quantity",
-    sorter: (a, b) => a.limit - b.limit,
+    sorter: (a, b) => a.quantity - b.quantity,
+  },
+  {
+    title: "Technology",
+    dataIndex: "technology",
+    key: "technology",
+    render: (technology) =>
+      technology.map((tech) => <Tag color="orange">{tech}</Tag>),
   },
   {
     title: "Start Day",
@@ -71,26 +78,45 @@ const columns = [
 
 const Campaign = () => {
   const dispatch = useDispatch();
-  const { campaigns } = useSelector((state) => state.campaigns);
-  console.log("campaigns", campaigns);
+  const { search } = useLocation();
+  const navigate = useNavigate();
+  const { campaigns, count, loading } = useSelector((state) => state.campaigns);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    dispatch(getCampaign());
-  }, [dispatch]);
+    const page = new URLSearchParams(search).get("page") || 1;
+    setPage(Number(page));
+  }, [search]);
+
+  useEffect(() => {
+    dispatch(getCampaign(page));
+  }, [dispatch, page]);
 
   return (
     <>
-      <Divider>
-        <Button style={{ textAlign: "left" }} type="primary">
-          <Link to="/dashboard/campaign/create">Create Campaign</Link>
-        </Button>
-      </Divider>
+      <Spin spinning={loading}>
+        <Divider>
+          <Button style={{ textAlign: "left" }} type="primary">
+            <Link to="/dashboard/campaign/create">Create Campaign</Link>
+          </Button>
+        </Divider>
 
-      <Table
-        columns={columns}
-        dataSource={campaigns}
-        size={"middle"}
-        scroll={{ x: "700px" }}
-      ></Table>
+        <Table
+          columns={columns}
+          dataSource={campaigns}
+          size={"middle"}
+          scroll={{ x: "700px" }}
+          pagination={{
+            pageSize: 5,
+            total: count,
+            current: page,
+            onChange: (num) => {
+              dispatch(getCampaign(num));
+              navigate(`/dashboard/campaign/?page=${num}`);
+            },
+          }}
+        ></Table>
+      </Spin>
     </>
   );
 };
