@@ -13,6 +13,11 @@ const { Header, Sider, Content } = Layout;
 
 const navigation = [
   {
+    name: "Statistic",
+    path: "/dashboard",
+    icon: <UserOutlined />,
+  },
+  {
     name: "Campaign",
     path: "/dashboard/campaign",
     icon: <UserOutlined />,
@@ -32,7 +37,7 @@ const Dasboard = () => {
       <Layout style={{ height: "100vh" }}>
         <Sider trigger={null} collapsible collapsed={open} collapsedWidth="70">
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
             {navigation.map((item, index) => (
               <Menu.Item key={index} icon={item.icon}>
                 <Link to={item.path}>{item.name}</Link>
