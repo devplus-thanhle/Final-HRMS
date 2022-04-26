@@ -1,10 +1,14 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu } from "antd";
 import {
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
+import RootRouter from "./Router";
+
+
+
 const { Header, Content, Sider } = Layout;
 const items1 = ["1", "2", "3"].map((key) => ({
   key,
@@ -58,15 +62,7 @@ export default function index() {
               padding: "0 24px 24px",
             }}
           >
-            <Breadcrumb
-              style={{
-                margin: "16px 0",
-              }}
-            >
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
+            
             <Content
               className="site-layout-background"
               style={{
@@ -75,7 +71,7 @@ export default function index() {
                 minHeight: 280,
               }}
             >
-              Content
+              <RootRouter/>
             </Content>
           </Layout>
         </Layout>
