@@ -2,6 +2,7 @@ import React from "react";
 import Home from "../containers/HomePage/index";
 import Dashboard from "../containers/Dashboard/index";
 import NotFound from "../containers/404Page/index";
+import Campaign from "../containers/Campaign/index";
 export const routes = [
   {
     indexx: true,
@@ -15,4 +16,9 @@ export const routes = [
     path: "*",
     component: <NotFound />,
   },
+  
+  {
+    path: "/campaign/*",
+    component: <Campaign />,
+  }
 ];
